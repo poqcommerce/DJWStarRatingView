@@ -161,14 +161,8 @@
 
 - (CGFloat)fillPercentageForStarNumber:(NSInteger)starNumber
 {
-    float star = (float)starNumber + 1;
-    if (star <= self.rating) {
-        return 1.0;
-    } else if ((float)(star - 0.5) <= self.rating) {
-        return 0.5;
-    } else {
-        return 0;
-    }
+    CGFloat percentage = fmaxf(fminf(self.rating - starNumber * 1.f, 1.f), 0.f);
+    return percentage;
 }
 
 - (CGSize)intrinsicContentSize
